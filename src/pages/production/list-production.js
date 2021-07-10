@@ -15,10 +15,14 @@ import ErrorModel from "../../models/error-models";
 import SuccessModel from "../../models/success-models";
 import { Link } from "react-router-dom";
 import DnsIcon from "@material-ui/icons/Dns";
+import { useParams } from "react-router-dom";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
+import BuildIcon from "@material-ui/icons/Build";
+import WorkIcon from "@material-ui/icons/Work";
+import PublicIcon from "@material-ui/icons/Public";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -44,7 +48,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ListeUtilisateur() {
+export default function ListProduction() {
   const classes = useStyles();
 
   const [page, setPage] = React.useState(0);
@@ -62,17 +66,21 @@ export default function ListeUtilisateur() {
   const [error, seterror] = useState(null);
   const [success, setsuccess] = useState(null);
 
+  const id = useParams().id;
+
   useEffect(() => {
     const sendRequest = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/utilisateur/`);
+        const response = await fetch(
+          `http://localhost:5000/api/production/projet/${id}`
+        );
 
         const responseData = await response.json();
         if (!response.ok) {
           throw new Error(responseData.message);
         }
 
-        setList(responseData.existingUtilisateur);
+        setList(responseData.production);
       } catch (err) {
         seterror(err.message);
       }
@@ -91,10 +99,9 @@ export default function ListeUtilisateur() {
     <Container>
       <Row>
         <Col></Col>
-        <Col>
+        <Col xs={10}>
           <ErrorModel error={error} />
           <SuccessModel success={success} />
-
           <InputLabel htmlFor="input-with-icon-adornment">Chercher</InputLabel>
           <Input
             id="input-with-icon-adornment"
@@ -109,14 +116,9 @@ export default function ListeUtilisateur() {
             <Table className={classes.table} aria-label="customized table">
               <TableHead>
                 <TableRow>
-                  <StyledTableCell>Nom</StyledTableCell>
-                  <StyledTableCell align="right">Prenom</StyledTableCell>
-                  <StyledTableCell align="right">Adresse</StyledTableCell>
-                  <StyledTableCell align="right">Tel</StyledTableCell>
-                  <StyledTableCell align="right">Cin</StyledTableCell>
-                  <StyledTableCell align="right">Qualification</StyledTableCell>
-                  <StyledTableCell align="right">Email</StyledTableCell>
-                  <StyledTableCell align="right">Projet</StyledTableCell>
+                  <StyledTableCell >Type</StyledTableCell>
+
+                  <StyledTableCell >Marchet</StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -125,39 +127,21 @@ export default function ListeUtilisateur() {
                     .filter((val) => {
                       if (searchTerm == "") {
                         return val;
-                      } else if (val.nom.includes(searchTerm)) {
+                      } else if (val.type.includes(searchTerm)) {
                         return val;
                       }
                     })
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => (
                       <StyledTableRow key={row.name}>
-                        <StyledTableCell component="th" scope="row">
-                          {row.nom}
+                        <StyledTableCell  component="th" scope="row">
+                          {row.type}
                         </StyledTableCell>
-                        <StyledTableCell align="right">
-                          {row.prenom}
+                     
+                        <StyledTableCell >
+                          {row.marche} 
                         </StyledTableCell>
-                        <StyledTableCell align="right">
-                          {row.adresse}
-                        </StyledTableCell>
-                        <StyledTableCell align="right">
-                          {row.telephone}
-                        </StyledTableCell>
-                        <StyledTableCell align="right">
-                          {row.cin}
-                        </StyledTableCell>
-                        <StyledTableCell align="right">
-                          {row.qualification}
-                        </StyledTableCell>
-                        <StyledTableCell align="right">
-                          {row.email}
-                        </StyledTableCell>
-                        <StyledTableCell align="right">
-                          <Link to={`/list-projet-utilisateur/${row._id}`}>
-                            <DnsIcon style={{ color: "blue" }} />
-                          </Link>
-                        </StyledTableCell>
+    
                       </StyledTableRow>
                     ))}
               </TableBody>

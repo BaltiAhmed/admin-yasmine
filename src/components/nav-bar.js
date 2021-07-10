@@ -18,6 +18,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import HomeIcon from "@material-ui/icons/Home";
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import BallotIcon from '@material-ui/icons/Ballot';
 import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -150,12 +151,25 @@ export default function NavBar(props) {
             to="/utilisateur"
             style={{ textDecoration: "none", color: "black" }}
           >
-            <ListItem button key="Liste produit">
+            <ListItem button key="Utilisateur">
               <ListItemIcon>
                 {" "}
                 <SupervisorAccountIcon style={{ color: "#039be5" }} />
               </ListItemIcon>
               <ListItemText primary="Utilisateur" />
+            </ListItem>
+          </Link>
+
+          <Link
+            to="/list-projet"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <ListItem button key="Demande de Projet">
+              <ListItemIcon>
+                {" "}
+                <BallotIcon style={{ color: "#039be5" }} />
+              </ListItemIcon>
+              <ListItemText primary="Demande de Projet" />
             </ListItem>
           </Link>
         </List>
