@@ -145,6 +145,7 @@ export default function ListProjetUtilisateur() {
                         </StyledTableCell>
                         <StyledTableCell align="right">
                           {row.descreption}
+                          
                         </StyledTableCell>
 
                         <StyledTableCell align="right">
