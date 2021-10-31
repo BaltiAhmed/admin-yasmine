@@ -12,6 +12,10 @@ import ListEquipement from "./pages/equipement/list-equipement";
 import ListeMarketing from "./pages/marketing/list-marketing";
 import ListProduction from "./pages/production/list-production";
 import ListProjet from "./pages/projet/list-projet";
+import ListFormation from "./pages/formation/list";
+import AjoutFormation from "./pages/formation/ajout";
+import UpdateFormation from "./pages/formation/update";
+import image from "./images/image.jpg";
 
 function App() {
   const { user, token, login, logout } = UserAuth();
@@ -21,12 +25,18 @@ function App() {
     routes = (
       <React.Fragment>
         <Route path="/" exact component={Home} />
-        <Route path="/utilisateur"  component={ListeUtilisateur} />
-        <Route path="/list-projet-utilisateur/:id"  component={ListProjetUtilisateur} />
-        <Route path="/list-equipement/:id"  component={ListEquipement} />
-        <Route path="/list-marketing/:id"  component={ListeMarketing} />
-        <Route path="/list-production/:id"  component={ListProduction} />
-        <Route path="/list-projet"  component={ListProjet} />
+        <Route path="/utilisateur" component={ListeUtilisateur} />
+        <Route
+          path="/list-projet-utilisateur/:id"
+          component={ListProjetUtilisateur}
+        />
+        <Route path="/list-equipement/:id" component={ListEquipement} />
+        <Route path="/list-marketing/:id" component={ListeMarketing} />
+        <Route path="/list-production/:id" component={ListProduction} />
+        <Route path="/list-projet" component={ListProjet} />
+        <Route path="/list-formation" component={ListFormation} />
+        <Route path="/ajout-formation" component={AjoutFormation} />
+        <Route path="/update-formation/:id" component={UpdateFormation} />
       </React.Fragment>
     );
   } else {
@@ -37,15 +47,24 @@ function App() {
     );
   }
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: "url(" + image + ")",
+        backgroundSize: "cover",
+        /* backgroundRepeat: "no-repeat", */
+        position: "absolute",
+        /* height: "100vh", */
+        width: "100%",
+        backgroundPosition: "center",
+      }}
+    >
       <Authcontext.Provider
         value={{ user: user, token: token, login: login, logout: logout }}
       >
         <BrowserRouter>
-          {!token && <NavLogin /> }
+          {!token && <NavLogin />}
           {!token && routes}
-          {token && <NavBar centent={routes}/>}
-          
+          {token && <NavBar centent={routes} />}
         </BrowserRouter>
       </Authcontext.Provider>
     </div>

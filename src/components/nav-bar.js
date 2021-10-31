@@ -20,6 +20,8 @@ import HomeIcon from "@material-ui/icons/Home";
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import BallotIcon from '@material-ui/icons/Ballot';
 import { Link } from "react-router-dom";
+import SimpleMenu from "./NavBarMenu";
+import BookIcon from '@material-ui/icons/Book';
 
 const drawerWidth = 240;
 
@@ -115,6 +117,7 @@ export default function NavBar(props) {
           <Typography variant="h6" noWrap>
             Bonjour
           </Typography>
+          <SimpleMenu />
         </Toolbar>
       </AppBar>
       <Drawer
@@ -170,6 +173,18 @@ export default function NavBar(props) {
                 <BallotIcon style={{ color: "#039be5" }} />
               </ListItemIcon>
               <ListItemText primary="Demande de Projet" />
+            </ListItem>
+          </Link>
+          <Link
+            to="/list-formation"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <ListItem button key="">
+              <ListItemIcon>
+                {" "}
+                <BookIcon style={{ color: "#039be5" }} />
+              </ListItemIcon>
+              <ListItemText primary="Nos formations" />
             </ListItem>
           </Link>
         </List>
