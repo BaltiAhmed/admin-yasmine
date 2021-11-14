@@ -49,7 +49,7 @@ const Login = () => {
   };
 
   return (
-    <div style={{ marginTop: "5%" }}>
+    <div style={{ marginTop: "5%",height: "100vh" }}>
       <Container>
         <Row>
           <Col></Col>

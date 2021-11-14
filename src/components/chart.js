@@ -196,8 +196,8 @@ const ChartsPage = () => {
 
   const [error, seterror] = useState(null);
   const [success, setsuccess] = useState(null);
-  const [promoteur, setPromoteur] = useState();
-  const [projet, setProjet] = useState();
+  const [site, setSite] = useState();
+  const [evenement, setEvenement] = useState();
   const [BonPlan, setBonPlan] = useState();
   const [client, setClient] = useState();
 
@@ -244,14 +244,14 @@ const ChartsPage = () => {
   useEffect(() => {
     const sendRequest = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/projet/`);
+        const response = await fetch(`http://localhost:5000/api/evenement/`);
 
         const responseData = await response.json();
         if (!response.ok) {
           throw new Error(responseData.message);
         }
 
-        setProjet(responseData.existingProjet);
+        setEvenement(responseData.evenement);
       } catch (err) {
         seterror(err.message);
       }
@@ -263,14 +263,14 @@ const ChartsPage = () => {
   useEffect(() => {
     const sendRequest = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/utilisateur/`);
+        const response = await fetch(`http://localhost:5000/api/site/`);
 
         const responseData = await response.json();
         if (!response.ok) {
           throw new Error(responseData.message);
         }
 
-        setPromoteur(responseData.existingUtilisateur);
+        setSite(responseData.sites);
       } catch (err) {
         seterror(err.message);
       }
@@ -279,20 +279,20 @@ const ChartsPage = () => {
     sendRequest();
   }, []);
 
-
+  console.log(site);
   const dataBar = {
-    labels: ["Promoteurs", "Projets", "Financières"],
+    labels: ["Site tourestique", "Evenement", "Bon plan","Client"],
     datasets: [
       {
         label: "Données ",
-        backgroundColor: "#000051",
+        backgroundColor: "rgba(255,99,132,0.2)",
         borderColor: "rgba(255,99,132,1)",
         borderWidth: 0,
-        hoverBackgroundColor: "#534bae",
+        hoverBackgroundColor: "rgba(255,99,132,0.4)",
         hoverBorderColor: "rgba(255,99,132,1)",
         data: [
-          promoteur && promoteur.length,
-          projet && projet.length,
+          site && site.length,
+          evenement && evenement.length,
           BonPlan && BonPlan.length,
           client && client.length,
         ],
@@ -357,7 +357,7 @@ const ChartsPage = () => {
 
   return (
     <MDBContainer>
-      <SectionContainer header="Données globals">
+      <SectionContainer header="Bar chart">
         <Bar data={dataBar} options={{ responsive: true }} />
       </SectionContainer>
 
@@ -370,8 +370,8 @@ const ChartsPage = () => {
           name="sId"
           onChange={onchange}
         >
-          {promoteur &&
-            promoteur.map((row) => <MenuItem value={row._id}>{row.nom}</MenuItem>)}
+          {site &&
+            site.map((row) => <MenuItem value={row._id}>{row.nom}</MenuItem>)}
         </Select>
       </FormControl>
 

@@ -159,7 +159,20 @@ export default function NavBar(props) {
                 {" "}
                 <SupervisorAccountIcon style={{ color: "#039be5" }} />
               </ListItemIcon>
-              <ListItemText primary="Utilisateur" />
+              <ListItemText primary="Promoteurs" />
+            </ListItem>
+          </Link>
+
+          <Link
+            to="/financiere"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <ListItem button key="financiere">
+              <ListItemIcon>
+                {" "}
+                <SupervisorAccountIcon style={{ color: "#039be5" }} />
+              </ListItemIcon>
+              <ListItemText primary="Financières" />
             </ListItem>
           </Link>
 
