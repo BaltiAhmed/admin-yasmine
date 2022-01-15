@@ -18,6 +18,8 @@ import AjoutFormation from "./pages/formation/ajout";
 import UpdateFormation from "./pages/formation/update";
 import image from "./images/image.jpg";
 import ListeFinanciere from "./pages/financiere/list";
+import Chat from "./pages/chat/chat";
+import ListClient from "./pages/chat/list";
 
 function App() {
   const { user, token, login, logout } = UserAuth();
@@ -42,6 +44,8 @@ function App() {
         <Route path="/ajout-formation" component={AjoutFormation} />
         <Route path="/update-formation/:id" component={UpdateFormation} />
         <Route path="/financiere" component={ListeFinanciere} />
+        <Route path="/chat/:id"  component={Chat} />
+        <Route path="/list-client"  component={ListClient} />
       </React.Fragment>
     );
   } else {

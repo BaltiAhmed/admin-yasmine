@@ -22,6 +22,7 @@ import BallotIcon from '@material-ui/icons/Ballot';
 import { Link } from "react-router-dom";
 import SimpleMenu from "./NavBarMenu";
 import BookIcon from '@material-ui/icons/Book';
+import MessageIcon from "@material-ui/icons/Message";
 
 const drawerWidth = 240;
 
@@ -198,6 +199,17 @@ export default function NavBar(props) {
                 <BookIcon style={{ color: "#039be5" }} />
               </ListItemIcon>
               <ListItemText primary="Nos formations" />
+            </ListItem>
+          </Link>
+          <Link
+            to="/list-client"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <MessageIcon style={{ color: "#039be5" }}  />
+              </ListItemIcon>
+              <ListItemText primary="Nos clients" />
             </ListItem>
           </Link>
         </List>
