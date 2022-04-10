@@ -263,14 +263,14 @@ const ChartsPage = () => {
   useEffect(() => {
     const sendRequest = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/utilisateur/`);
+        const response = await fetch(`http://localhost:5000/api/projet/`);
 
         const responseData = await response.json();
         if (!response.ok) {
           throw new Error(responseData.message);
         }
 
-        setPromoteur(responseData.existingUtilisateur);
+        setPromoteur(responseData.existingProjet);
       } catch (err) {
         seterror(err.message);
       }
@@ -313,7 +313,7 @@ const ChartsPage = () => {
     const sendRequest = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/site/${siteId}`
+          `http://localhost:5000/api/projet/${siteId}`
         );
 
         const responseData = await response.json();
@@ -321,7 +321,7 @@ const ChartsPage = () => {
           throw new Error(responseData.message);
         }
 
-        setsiteE(responseData.site);
+        setsiteE(responseData.existingProjet);
       } catch (err) {
         seterror(err.message);
       }
@@ -337,10 +337,9 @@ const ChartsPage = () => {
       {
         data: [
           /* siteE && siteE.capacite, */
-          siteE && siteE.evenements.length,
-          siteE && siteE.bonPlans.length,
-          siteE && siteE.transports.length,
-          siteE && siteE.scoreT,
+          siteE && siteE.equipements.length,
+          siteE && siteE.productions.length,
+          siteE && siteE.marketings.length,
         ],
         backgroundColor: [
           "#F7464A",
@@ -352,7 +351,7 @@ const ChartsPage = () => {
         label: "My dataset", // for legend
       },
     ],
-    labels: [/* "Capacité", */ "Evenements", "BonPlan", "Transport", "Score"],
+    labels: [/* "Capacité", */"Equipements", "Productions", "Marketings"],
   };
 
   return (
@@ -362,7 +361,7 @@ const ChartsPage = () => {
       </SectionContainer>
 
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Site tourestique</InputLabel>
+        <InputLabel id="demo-simple-select-label">Promoteurs</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
