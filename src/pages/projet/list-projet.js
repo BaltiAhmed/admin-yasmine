@@ -23,6 +23,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import BuildIcon from "@material-ui/icons/Build";
 import WorkIcon from "@material-ui/icons/Work";
 import PublicIcon from "@material-ui/icons/Public";
+import PlanAffaire from '../../components/planAffaire'
+
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -157,6 +159,7 @@ export default function ListProjet() {
                           <Link to={`/list-production/${row._id}`}>
                             <WorkIcon style={{ color: "blue" }} />
                           </Link>
+                          <PlanAffaire id={row._id}/>
                         </StyledTableCell>
                       </StyledTableRow>
                     ))}
